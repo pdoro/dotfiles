@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# http://askubuntu.com/questions/69556/how-to-check-battery-status-using-terminal
+
+battery_level=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "percentage")
+
+# Print icon and battery level. If no bat lvl -> using ac-adapter
+if [ -z $battery_level]; then
+	printf "  ACDC"; exit 0
+elif [ $battery_level -gt "90" ]; then
+	printf "  $battery_level"; exit 0
+elif [ $battery_level -gt "70" ]; then
+	printf "  $battery_level"; exit 0
+elif [ $battery_level -gt "50" ]; then
+	printf "  $battery_level"; exit 0
+elif [ $battery_level -gt "30" ]; then
+	printf "  $battery_level"; exit 0
+elif [ $battery_level -gt "10" ]; then
+	printf "  $battery_level"; exit 0
+else
+	printf "Check battery!"; exit 0
+fi
